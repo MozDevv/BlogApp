@@ -1,0 +1,30 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    container_name: blog
+    environment:
+      POSTGRES_USER: mozz
+      POSTGRES_PASSWORD: 1234
+      PGDATA: /data/postgres
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5050:5432"
+    networks:
+      - db
+    restart: unless-stopped
+
+
+
+
+networks:
+  db:
+    driver: bridge
+
+volumes:
+  db:
+
+
+
+
