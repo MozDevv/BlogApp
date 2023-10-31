@@ -34,6 +34,7 @@ public class Post {
     private String content;
 
     @Column(name = "image")
+
     private String image;
 
     @Column(name = "date_created")

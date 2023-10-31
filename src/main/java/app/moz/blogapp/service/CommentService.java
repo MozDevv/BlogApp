@@ -1,6 +1,7 @@
 package app.moz.blogapp.service;
 
 import app.moz.blogapp.payloads.CommentDto;
+import app.moz.blogapp.payloads.PostDTO;
 
 import java.util.List;
 import java.util.Set;
@@ -14,6 +15,7 @@ public interface CommentService {
     List<CommentDto> getAllComments();
 
     Set<CommentDto> getAllCommentsForAPost(int postId);
+
 
 
 }

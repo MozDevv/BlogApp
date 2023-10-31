@@ -7,13 +7,19 @@ import app.moz.blogapp.Exceptions.ResourceNotFound;
 import app.moz.blogapp.dao.CategoryRepository;
 import app.moz.blogapp.dao.PostRepository;
 import app.moz.blogapp.dao.UserRepository;
-import app.moz.blogapp.payloads.CategoryDto;
 import app.moz.blogapp.payloads.PostDTO;
 import jakarta.persistence.EntityNotFoundException;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +46,7 @@ public class PostServiceImpl implements PostService {
 
 
 
+
     @Override
     public PostDTO createPost(PostDTO postDTO, int userId, int categoryId) {
 
@@ -50,6 +57,8 @@ public class PostServiceImpl implements PostService {
                 .orElseThrow(()-> new EntityNotFoundException("Category Not Found"));
 
         Post post = modelMapper.map(postDTO, Post.class);
+
+
       post.setDateCreated(new Date());
 
       post.setUser(user);
@@ -139,6 +148,19 @@ public class PostServiceImpl implements PostService {
 
         return postDTOList;
     }
+
+    @Override
+    public List<PostDTO> getPostsByUserId(int userId) {
+
+        List<Post> posts = postRepository.findByUser_Id(userId);
+
+        List<PostDTO> postDTOS = posts.stream()
+                .map(post -> modelMapper.map(post, PostDTO.class))
+                .collect(Collectors.toList());
+
+        return postDTOS;
+    }
+
 
 
 }

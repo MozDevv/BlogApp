@@ -19,17 +19,14 @@ import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
 @Component
-//nn@RequiredArgsConstructor
+@RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JWTUtil jwtUtil;
 
     private final UserDetailsService userDetailsService;
 
-    public JwtAuthenticationFilter ( JWTUtil jwtUtil1, UserDetailsService userDetailsService1) {
-        jwtUtil = jwtUtil1;
-        userDetailsService= userDetailsService1;
-    }
+
 
     @Override
     protected void doFilterInternal(
@@ -40,7 +37,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
-        final String jwt;
+        final String  jwt;
         final String userEmail;
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")){

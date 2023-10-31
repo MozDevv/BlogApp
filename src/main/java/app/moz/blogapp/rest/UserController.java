@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1")
 public class UserController {
@@ -41,6 +42,7 @@ public class UserController {
 
     }
 
+
     @PostMapping("/users")
     public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
 
@@ -68,5 +70,11 @@ public class UserController {
     public void deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
     }
+
+    @PostMapping("/userid")
+    public Integer getUserIdByEmail(@RequestBody String email) {
+        return userService.getUserIdbyEmail(email);
+    }
+
 
 }

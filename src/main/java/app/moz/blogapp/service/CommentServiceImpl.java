@@ -8,6 +8,7 @@ import app.moz.blogapp.dao.CommentRepository;
 import app.moz.blogapp.dao.PostRepository;
 import app.moz.blogapp.dao.UserRepository;
 import app.moz.blogapp.payloads.CommentDto;
+import app.moz.blogapp.payloads.PostDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -93,6 +94,7 @@ public class CommentServiceImpl implements CommentService{
 
         return commentDtoSet;
     }
+
 
 
 }

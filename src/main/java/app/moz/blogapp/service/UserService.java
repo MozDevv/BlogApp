@@ -1,6 +1,7 @@
 package app.moz.blogapp.service;
 
 import app.moz.blogapp.Entity.User;
+import app.moz.blogapp.payloads.PostDTO;
 import app.moz.blogapp.payloads.UserDto;
 
 import java.util.List;
@@ -20,5 +21,9 @@ public interface UserService {
     void deleteUser(int id);
 
     Optional<User> getUserByEmail(String email);
+
+    Integer getUserIdbyEmail(String email);
+
+
 
 }
